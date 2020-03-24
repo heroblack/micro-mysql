@@ -1,0 +1,27 @@
+{
+  "name": "micro-mysql",
+  "version": "1.0.0",
+  "description": "microservice for connect to data with Mysql.\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D in Nodejs \u001b[C\u001b[C\u001b[\u001b[C\u001b\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001bs to connect \u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001bfor \u001b[C\u001b[C\u001b[C\u001b[Cconnect to Mysql database.",
+  "main": "bin/index.js",
+  "bin": {
+    "micro-mysql": "index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "nanoid": "^2.1.11",
+    "nodemon": "^2.0.2",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon ./bin/index.js"
+  },
+  "keywords": [
+    "microservice",
+    "nodejs",
+    "mysql"
+  ],
+  "author": "Fabio Rojas",
+  "license": "MIT"
+}
