@@ -23,4 +23,6 @@ morganBody(app);
 routes(app);
 app.use(error);
 
+console.log("log server");
+
 module.exports = app;
