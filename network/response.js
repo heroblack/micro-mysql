@@ -1,6 +1,6 @@
 exports.success = function(req, res, message = "", status = 200) {
   res.status(status).send({
-    host: req.hostname,
+    //host: req.hostname,
     error: false,
     status,
     body: message
