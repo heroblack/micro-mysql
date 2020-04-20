@@ -6,8 +6,8 @@ CREATE TABLE `tipodocs` (
 
 
 CREATE TABLE `users` (
-  `user_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `id` int  unsigned Not NULL,
+  `user_id`  varchar(32) NOT NULL,
+  `documento` int  unsigned Not NULL,
   `tipodoc_id` int unsigned NOT NULL,
   `firstName` varchar(50) NOT NUll,
   `secondName`varchar(50) NOT NULL,
@@ -20,27 +20,26 @@ CREATE TABLE `users` (
   `active` tinyint NOT NULL DEFAULT '1',
   `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  CONSTRAINT users_user_id_PK PRIMARY KEY(`user_id`),
-  CONSTRAINT users_id_UK UNIQUE KEY (`id`),
+  CONSTRAINT users_user_id_PK PRIMARY KEY(`documento`),
+  CONSTRAINT users_id_UK UNIQUE KEY (`user_id`),
   CONSTRAINT users_email_UK UNIQUE KEY (`email`),
   CONSTRAINT users_celular_UK UNIQUE KEY (`celular`),
   CONSTRAINT users_tipodoc_id_FK FOREIGN KEY(`tipodoc_id`) REFERENCES  tipodocs(`tipodoc_id`)
-)ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=UTF8MB4;
+)ENGINE=InnoDB  DEFAULT CHARSET=UTF8MB4;
 
 
 CREATE TABLE `auths` (
-  `user_id` int unsigned NOT NULL,
+  `user_id` varchar(32) NOT NULL,
   `username` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` varchar(64) NOT NULL,
   CONSTRAINT auths_user_id_PK PRIMARY KEY(`user_id`),
-  CONSTRAINT auths_user_id_FK FOREIGN KEY(`user_id`) REFERENCES  users(`user_id`),
   CONSTRAINT users_username_UK UNIQUE KEY (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=UTF8MB4;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 
 CREATE TABLE `posts`(
   `post_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int unsigned NOT NULL,
+  `user_id` varchar(32) NOT NULL,
   `title` varchar(60) NOT NULL,
   `text` text NOT NULL,
   `image` varchar(255),
@@ -51,9 +50,9 @@ CREATE TABLE `posts`(
   CONSTRAINT posts_user_id_FK FOREIGN KEY(`user_id`) REFERENCES  users(`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=UTF8MB4;
 
-CREATE TABLE `followers` (
-  `user_to`   int unsigned NOT NULL,
-  `user_from` int unsigned NOT NULL,
+CREATE TABLE `follow` (
+  `user_from`   varchar(32) NOT NULL,
+  `user_to` varchar(32) NOT NULL,
   `active`    boolean DEFAULT true,
   `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT followers_user_to_FK FOREIGN KEY(`user_to`) REFERENCES  users(`user_id`),
@@ -62,7 +61,7 @@ CREATE TABLE `followers` (
 
 CREATE TABLE `likes` (
   `post_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int unsigned NOT NULL,
+  `user_id` varchar(32) NOT NULL,
   `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT likes_post_id_FK FOREIGN KEY(`post_id`) REFERENCES  posts(`post_id`),
   CONSTRAINT likes_user_id_FK FOREIGN KEY(`user_id`) REFERENCES  users(`user_id`)

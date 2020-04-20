@@ -1,7 +1,7 @@
 const app = require("../api/index");
 const server = require("http").Server(app);
 const config = require("../config");
-
+const debug = require("debug")("app:server");
 const port = config.api.server.port;
 app.set("port", port);
 
@@ -34,5 +34,5 @@ function onError(error) {
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-  console.log("Listening on " + bind);
+  debug("Listening on " + bind);
 }

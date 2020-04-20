@@ -1,13 +1,13 @@
-exports.success = function(req, res, message = "", status = 200) {
+exports.success = function (req, res, message = "", status = 200) {
   res.status(status).send({
     //host: req.hostname,
     error: false,
     status,
-    body: message
+    body: message,
   });
 };
 
-exports.error = function(
+exports.error = function (
   req,
   res,
   error = "Internal server error",
@@ -16,6 +16,6 @@ exports.error = function(
   res.status(status).send({
     error,
     status,
-    body: false
+    body: false,
   });
 };

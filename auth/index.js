@@ -13,13 +13,27 @@ function verify(token) {
 }
 
 const check = {
-  own: function(req, owner) {
-    const decoded = decodeHeader(req);
-    console.log("decoded:", decoded);
-    if (decoded.user_id !== owner) {
-      throw error("no cuentas permisos para editar", 401);
+  own: function (req, owner) {
+    try {
+      const decoded = decodeHeader(req);
+      if (decoded.user_id !== owner) {
+        throw error("No Authorized!!!", 401);
+      }
+      return true;
+    } catch (e) {
+      throw error(e.message, e.statusCode);
     }
-  }
+  },
+
+  logged: function (req) {
+    try {
+      const decoded = decodeHeader(req);
+      console.log("Decoded:", decoded);
+      return true;
+    } catch (e) {
+      throw error(e.message, e.statusCode);
+    }
+  },
 };
 
 function getToken(auth) {
@@ -37,10 +51,12 @@ function decodeHeader(req) {
   const token = getToken(authorization);
   const decoded = verify(token);
 
+  req.user = decoded;
+
   return decoded;
 }
 
 module.exports = {
   sign,
-  check
+  check,
 };
