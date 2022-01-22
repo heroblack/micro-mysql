@@ -24,7 +24,7 @@
     "morgan": "^1.10.0",
     "morgan-body": "^2.4.8",
     "mysql": "^2.18.1",
-    "nanoid": "^2.1.11",
+    "nanoid": "^3.1.31",
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-http": "^0.3.0",
